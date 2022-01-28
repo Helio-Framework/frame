@@ -42,26 +42,50 @@ public class Mapping {
 		linkRules.addAll(mapping.getLinkRules());
 	}
 
+	/**
+	 * Gets the {@link Datasource} of this {@link Mapping}
+	 * @return a list of {@link Datasource} 
+	 */
 	public List<Datasource> getDatasources() {
 		return datasources;
 	}
-
+	
+	/**
+	 * Sets the {@link Datasource} of this {@link Mapping}
+	 * @param datasources a new list of {@link Datasource}
+	 */
 	public void setDatasources(List<Datasource> datasources) {
 		this.datasources = datasources;
 	}
 
+	/**
+	 * Gets the {@link TranslationRules} of this {@link Mapping}
+	 * @return a list of {@link TranslationRules} 
+	 */
 	public List<TranslationRules> getTranslationRules() {
 		return translationRules;
 	}
 
+	/**
+	 * Sets the {@link TranslationRules} of this {@link Mapping}
+	 * @param translationRules a new list of {@link TranslationRules}
+	 */
 	public void setTranslationRules(List<TranslationRules> translationRules) {
 		this.translationRules = translationRules;
 	}
 
+	/**
+	 * Gets the {@link LinkRule} of this {@link Mapping}
+	 * @return a list of {@link LinkRule} 
+	 */
 	public List<LinkRule> getLinkRules() {
 		return linkRules;
 	}
 
+	/**
+	 * Sets the {@link LinkRule} of this {@link Mapping} 
+	 * @param linkRules a new list of {@link LinkRule}
+	 */
 	public void setLinkRules(List<LinkRule> linkRules) {
 		this.linkRules = linkRules;
 	}

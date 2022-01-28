@@ -8,7 +8,6 @@ import helio.bleprints.mappings.TranslationUnit;
 /**
  * This components asynchronous {@link DataProvider}.
  * @author Andrea Cimmino Arriaga
- * @email cimmino@fi.upm.es
  */
 public interface AsyncDataProvider extends DataProvider {
 

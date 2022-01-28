@@ -26,43 +26,81 @@ public class LinkRule {
 	@SerializedName(value = "inverse")
 	private String inversePredicate;
 
+	/**
+	 * Default constructor
+	 */
 	public LinkRule() {
 		super();
 	}
 
 	// Getters & Setters
-
+	/**
+	 * 
+	 * @return
+	 */
 	public String getSourceNamedGraph() {
 		return sourceNamedGraph;
 	}
+	/**
+	 * 
+	 * @param sourceNamedGraph
+	 */
 	public void setSourceNamedGraph(String sourceNamedGraph) {
 		this.sourceNamedGraph = sourceNamedGraph;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTargetNamedGraph() {
 		return targetNamedGraph;
 	}
+	/**
+	 * 
+	 * @param targetNamedGraph
+	 */
 	public void setTargetNamedGraph(String targetNamedGraph) {
 		this.targetNamedGraph = targetNamedGraph;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public String getExpression() {
 		return expression;
 	}
+	/**
+	 * 
+	 * @param expression
+	 */
 	public void setExpression(String expression) {
 		this.expression = expression;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public String getPredicate() {
 		return predicate;
 	}
-
+	/**
+	 * 
+	 * @param predicate
+	 */
 	public void setPredicate(String predicate) {
 		this.predicate = predicate;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public String getInversePredicate() {
 		return inversePredicate;
 	}
-
+	/**
+	 * 
+	 * @param inversePredicate
+	 */
 	public void setInversePredicate(String inversePredicate) {
 		this.inversePredicate = inversePredicate;
 	}

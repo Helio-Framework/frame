@@ -10,80 +10,121 @@ import com.google.gson.annotations.SerializedName;
 /**
  * This object represents a rule that generates from heterogeneous data an RDF triple
  * @author Andrea Cimmino
- * @email banse27@gmail.com, cimmino@fi.upm.es
  */
 public class TranslationRule {
 
 	// -- Attributes
 	@Expose
-	protected String object; // mandatory
+	private String object; // mandatory
 	@Expose
-	protected String predicate; // mandatory
+	private String predicate; // mandatory
 	@Expose
 	@SerializedName(value = "literal", alternate = "is_literal")
-	protected Boolean isLiteral; // mandatory
+	private Boolean isLiteral; // mandatory
 	@Expose
 	@SerializedName(value = "datatype")
-	protected String dataType; // optional; disjoint with language
+	private String dataType; // optional; disjoint with language
 	@Expose
 	@SerializedName(value = "lang")
-	protected String language; // optional; disjoint with language
+	private String language; // optional; disjoint with language
 
 	// -- Constructor
-
+	
+	/**
+	 * 
+	 */
 	public TranslationRule() {
 		super();
 	}
 
 	// -- Getters and Setters
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getObject() {
 		return object;
 	}
 
-
+	/**
+	 * 
+	 * @param expression
+	 */
 	public void setObject(String expression) {
 		this.object = expression;
 	}
 
-
+	/**
+	 * 
+	 * @return
+	 */
 	public String getPredicate() {
 		return predicate;
 	}
 
-
+	/**
+	 * 
+	 * @param predicate
+	 */
 	public void setPredicate(String predicate) {
 		this.predicate = predicate;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getDataType() {
 		return dataType;
 	}
 
-
+	/**
+	 * 
+	 * @param dataType
+	 */
 	public void setDataType(String dataType) {
 		this.dataType = dataType;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Boolean getIsLiteral() {
 		return isLiteral;
 	}
 
+	/**
+	 * 
+	 * @param isLiteral
+	 */
 	public void setIsLiteral(Boolean isLiteral) {
 		this.isLiteral = isLiteral;
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getLanguage() {
 		return language;
 	}
 
+	/**
+	 * 
+	 * @param language
+	 */
 	public void setLanguage(String language) {
 		this.language = language;
 	}
 
 
 	// Other methods
-
+	/**
+	 * 
+	 * @return
+	 */
 	public List<String> fetchDataReferences(){
 		List<String> dataReferences = new ArrayList<>();
 		dataReferences.addAll(Expresions.extractDataReferences(predicate));

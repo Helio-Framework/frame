@@ -7,7 +7,6 @@ import helio.blueprints.exceptions.IncorrectMappingException;
 /**
  * These components are responsible of generating a {@link Mapping} from a specific representation, e.g., from an RML mapping.
  * @author Andrea Cimmino Arriaga
- * @email cimmino@fi.upm.es
  */
 public interface MappingReader {
 

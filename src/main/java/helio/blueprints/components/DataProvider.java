@@ -8,7 +8,6 @@ import com.google.gson.JsonObject;
 /**
  * This components provide pieces of data regardless their format, specifically, these components are meant to deal with the protocols and methods required to fetch the data.
  * @author Andrea Cimmino Arriaga
- * @email cimmino@fi.upm.es
  */
 public interface DataProvider extends Serializable {
 

@@ -20,10 +20,10 @@ import helio.blueprints.components.DataProvider;
  * refresh value in that case the RDF is generated periodically as specified in
  * the refresh attribute).
  * <p>
- * The {@link Datasource} also store the provided {@link JsonObject} configuration for the {@link DataProvider} and the {@link DataHandler}.
+ * The {@link Datasource} also store the provided {@link JsonObject}
+ * configuration for the {@link DataProvider} and the {@link DataHandler}.
  *
  * @author Andrea Cimmino Arriaga
- * @email cimmino@fi.upm.es
  *
  */
 public class Datasource {
@@ -45,10 +45,20 @@ public class Datasource {
 
 	// -- Constructor
 
+	/**
+	 * Default constructor
+	 */
 	public Datasource() {
 		// empty
 	}
 
+	/**
+	 * Quick constructor
+	 * 
+	 * @param id       the id of the {@link Datasource}
+	 * @param handler  a {@link DataHandler}
+	 * @param provider a {@link DataProvider}
+	 */
 	public Datasource(String id, DataHandler handler, DataProvider provider) {
 		this.id = id;
 		this.handler = handler;
@@ -56,52 +66,111 @@ public class Datasource {
 	}
 
 	// Getters & Setters
-
+	/**
+	 * Get the id of the {@link Datasource}
+	 * 
+	 * @return an id
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * Sets the id of the {@link Datasource}
+	 * 
+	 * @param id the id
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
+	/**
+	 * Gets the {@link DataHandler}
+	 * 
+	 * @return the {@link DataHandler}
+	 */
 	public DataHandler getDataHandler() {
 		return handler;
 	}
 
+	/**
+	 * Sets a new {@link DataHandler}
+	 * 
+	 * @param dataHandler a new {@link DataHandler}
+	 */
 	public void setDataHandler(DataHandler dataHandler) {
 		this.handler = dataHandler;
 	}
 
+	/**
+	 * Gets the {@link DataProvider}
+	 * 
+	 * @return the {@link DataProvider}
+	 */
 	public DataProvider getDataProvider() {
 		return provider;
 	}
 
+	/**
+	 * Sets a new {@link DataProvider}
+	 * 
+	 * @param dataProvider a new {@link DataProvider}
+	 */
 	public void setDataProvider(DataProvider dataProvider) {
 		this.provider = dataProvider;
 	}
 
+	/**
+	 * Gets the refresh time, null if the {@link Datasource} is synchronous or
+	 * asynchronous
+	 * 
+	 * @return the refresh time
+	 */
 	public Integer getRefresh() {
 		return refresh;
 	}
 
+	/**
+	 * Sets a refresh time for a scheduled {@link Datasource}
+	 * 
+	 * @param refresh the refresh time
+	 */
 	public void setRefresh(int refresh) {
 		this.refresh = refresh;
 	}
 
+	/**
+	 * Gets the configuration of the {@link DataHandler}
+	 * 
+	 * @return a {@link JsonObject} configuration
+	 */
 	public JsonObject getHandlerConfiguration() {
-
 		return handlerConfiguration;
 	}
 
+	/**
+	 * Sets a new {@link JsonObject} configuration for the {@link DataHandler}
+	 * 
+	 * @param handlerConfiguration a new {@link JsonObject} configuration
+	 */
 	public void setHandlerConfiguration(JsonObject handlerConfiguration) {
 		this.handlerConfiguration = handlerConfiguration;
 	}
 
+	/**
+	 * Gets the configuration of the {@link DataProvider}
+	 * 
+	 * @return a {@link JsonObject} configuration
+	 */
 	public JsonObject getProviderConfiguration() {
 		return providerConfiguration;
 	}
 
+	/**
+	 * Sets a new {@link JsonObject} configuration for the {@link DataProvider}
+	 * 
+	 * @param providerConfiguration a new {@link JsonObject} configuration
+	 */
 	public void setProviderConfiguration(JsonObject providerConfiguration) {
 		this.providerConfiguration = providerConfiguration;
 	}
