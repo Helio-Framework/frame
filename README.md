@@ -11,3 +11,7 @@ Blueprints for developing new Helio components
   <version>0.4.0</version>
 </dependency>
 ````
+
+### Developing a new component
+### Publishing the new component
+### Using the component in Helio
