@@ -18,7 +18,7 @@ public interface DataHandler extends Serializable{
 	/**
 	 * This method splits the provided data into chunks using some iterator, like a Json Path or an XPath (usually provided as part of the configuration)
 	 * @param dataStream A stream containing the data to be translated into RDF, that has a specific format that this Data Handler knows how to manage
-	 * @return a {@link Queue} in which each element corresponds to a chunk of data
+	 * @return a queue in which each element corresponds to a chunk of data
 	 */
 	public Queue<String> splitData(InputStream dataStream);
 

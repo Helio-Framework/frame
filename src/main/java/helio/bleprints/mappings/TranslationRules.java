@@ -30,7 +30,9 @@ public class TranslationRules {
 
 
 	// -- Constructor
-
+	/**
+	 * 
+	 */
 	public TranslationRules() {
 		super();
 		properties = new ArrayList<>();
