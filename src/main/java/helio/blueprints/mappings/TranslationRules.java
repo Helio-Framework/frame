@@ -1,4 +1,4 @@
-package helio.bleprints.mappings;
+package helio.blueprints.mappings;
 
 import java.util.ArrayList;
 import java.util.HashSet;

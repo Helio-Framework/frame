@@ -2,7 +2,7 @@ package helio.blueprints.components;
 
 import java.io.InputStream;
 
-import helio.bleprints.mappings.TranslationUnit;
+import helio.blueprints.mappings.TranslationUnit;
 
 
 /**

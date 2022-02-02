@@ -1,4 +1,4 @@
-package helio.bleprints.mappings;
+package helio.blueprints.mappings;
 
 import java.util.Objects;
 
@@ -6,8 +6,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import helio.blueprints.Components;
 import helio.blueprints.components.DataHandler;
 import helio.blueprints.components.DataProvider;
+import helio.blueprints.exceptions.IncorrectMappingException;
 
 /**
  * This class represents a source of data, which consist in a
@@ -28,6 +30,8 @@ import helio.blueprints.components.DataProvider;
  */
 public class Datasource {
 
+	private static final String KEY_TYPE = "type";
+	
 	@Expose
 	private String id;
 
@@ -66,6 +70,7 @@ public class Datasource {
 	}
 
 	// Getters & Setters
+	
 	/**
 	 * Get the id of the {@link Datasource}
 	 * 
@@ -154,7 +159,29 @@ public class Datasource {
 	 * @param handlerConfiguration a new {@link JsonObject} configuration
 	 */
 	public void setHandlerConfiguration(JsonObject handlerConfiguration) {
+		packHandler(handlerConfiguration);
 		this.handlerConfiguration = handlerConfiguration;
+	}
+	
+	private void packHandler(JsonObject json) {
+		try {
+			if (!json.has(KEY_TYPE)) {
+				throw new IncorrectMappingException(
+						"the JSON document for the provider must contain the mandatory key 'type' with a correct value");
+			} else {
+				String name = json.get(KEY_TYPE).getAsString();
+				if (name != null && !name.isEmpty()) {
+					handler = Components.dataHandlers.get(name);
+					if (handler == null)
+						throw new IncorrectMappingException("Data handler specified in the mapping does not exist");
+					handler.configure(json);
+				} else {
+					throw new IncorrectMappingException("Value of key 'type' can not be null or blank");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -172,8 +199,31 @@ public class Datasource {
 	 * @param providerConfiguration a new {@link JsonObject} configuration
 	 */
 	public void setProviderConfiguration(JsonObject providerConfiguration) {
+		packProvider(providerConfiguration);
 		this.providerConfiguration = providerConfiguration;
 	}
+	
+	private void packProvider(JsonObject json) {
+		try {
+			if (!json.has(KEY_TYPE)) {
+				throw new IncorrectMappingException(
+						"the JSON document for the provider must contain the mandatory key 'type' with a correct value");
+			} else {
+				String name = json.get(KEY_TYPE).getAsString();
+				if (name != null && !name.isEmpty()) {
+					provider = Components.dataProviders.get(name);
+					if (provider == null)
+						throw new IncorrectMappingException("Data provider specified in the mapping does not exist");
+					provider.configure(json);
+				} else {
+					throw new IncorrectMappingException("Value of key 'type' can not be null or blank");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	// -- Ancillary
 

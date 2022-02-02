@@ -1,7 +1,7 @@
 package helio.blueprints.exceptions;
 
-import helio.bleprints.mappings.Mapping;
 import helio.blueprints.components.MappingReader;
+import helio.blueprints.mappings.Mapping;
 
 /**
  * This exception is thrown when a {@link Mapping} is not compatible with a {@link MappingReader}. In other words, the {@link MappingReader} is not able to process the {@link Mapping}, although the {@link Mapping} can be syntactically correct.

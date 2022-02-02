@@ -1,8 +1,8 @@
 package helio.blueprints.components;
 
-import helio.bleprints.mappings.Mapping;
 import helio.blueprints.exceptions.IncompatibleMappingException;
 import helio.blueprints.exceptions.IncorrectMappingException;
+import helio.blueprints.mappings.Mapping;
 
 /**
  * These components are responsible of generating a {@link Mapping} from a specific representation, e.g., from an RML mapping.

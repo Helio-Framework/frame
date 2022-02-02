@@ -1,6 +1,6 @@
 package helio.blueprints.components;
 
-import helio.bleprints.mappings.Mapping;
+import helio.blueprints.mappings.Mapping;
 
 /**
  * These components encode functions that can be invoked from the {@link Mapping}. The functions of these components must be static functions.

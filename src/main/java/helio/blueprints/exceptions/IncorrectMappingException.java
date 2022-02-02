@@ -1,6 +1,6 @@
 package helio.blueprints.exceptions;
 
-import helio.bleprints.mappings.Mapping;
+import helio.blueprints.mappings.Mapping;
 
 /**
  * This exception is thrown when a {@link Mapping} is syntactically incorrect.
