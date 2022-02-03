@@ -9,12 +9,17 @@ import helio.blueprints.components.MappingFunctions;
 import helio.blueprints.components.MappingReader;
 import helio.blueprints.exceptions.ExtensionNotFoundException;
 
+/**
+ * This class allows to load external components of Helio from either a local jar or from one located through a URL.
+ * @author Andrea Cimmino
+ *
+ */
 public class Components {
 
-	public static Map<String, DataProvider> dataProviders = new HashMap<>();
-	public static Map<String, DataHandler> dataHandlers = new HashMap<>();
-	public static Map<String, MappingReader> mappingReaders = new HashMap<>();
-	public static Map<String, MappingFunctions> mappingFunctions = new HashMap<>();
+	private static Map<String, DataProvider> dataProviders = new HashMap<>();
+	private static Map<String, DataHandler> dataHandlers = new HashMap<>();
+	private static Map<String, MappingReader> mappingReaders = new HashMap<>();
+	private static Map<String, MappingFunctions> mappingFunctions = new HashMap<>();
 
 
 	public static final String EXTENSION_TYPE_PROVIDER = "DataProvider";
@@ -31,7 +36,13 @@ public class Components {
 
 
 	// Load Methods
-
+	/**
+	 * This method allows to register a component
+	 * @param source the path to the jar, it can be a URL or a local directory
+	 * @param clazz the full class specification, e.g., components.external.handlers.JsonHandler
+	 * @param type one of the types available in the {@link Components} class: Components.EXTENSION_TYPE_PROVIDER, Components.EXTENSION_TYPE_HANDLER, Components.EXTENSION_TYPE_READER, Components.EXTENSION_TYPE_FUNCTION
+	 * @throws ExtensionNotFoundException is thrown when the component was not found
+	 */
 	public static void registerComponent(String source, String clazz, String type) throws ExtensionNotFoundException {
 		String name = clazz.substring(clazz.lastIndexOf('.')+1);
 
@@ -56,12 +67,39 @@ public class Components {
 
 	}
 
+	/**
+	 * Returns the {@link DataProvider} components
+	 * @return a map with the name of the class as key and the {@link DataProvider} as value
+	 */
+	public static Map<String, DataProvider> getDataProviders() {
+		return dataProviders;
+	}
 
+	/**
+	 * Returns the {@link DataHandler} components
+	 * @return a map with the name of the class as key and the {@link DataHandler} as value
+	 */
+	public static Map<String, DataHandler> getDataHandlers() {
+		return dataHandlers;
+	}
 
+	/**
+	 * Returns the {@link MappingReader} components
+	 * @return a map with the name of the class as key and the {@link MappingReader} as value
+	 */
+	public static Map<String, MappingReader> getMappingReaders() {
+		return mappingReaders;
+	}
+
+	/**
+	 * Returns the {@link MappingFunctions} components
+	 * @return a map with the name of the class as key and the {@link MappingFunctions} as value
+	 */
+	public static Map<String, MappingFunctions> getMappingFunctions() {
+		return mappingFunctions;
+	}
 
 	// Building methods
-
-
 	private static DataProvider buildDataProvider(String source, String clazz) throws ExtensionNotFoundException {
 		DataProvider dataProviderPlugin = null;
 		try {

@@ -29,9 +29,9 @@ public class TranslationRule {
 	private String language; // optional; disjoint with language
 
 	// -- Constructor
-	
+
 	/**
-	 * 
+	 *
 	 */
 	public TranslationRule() {
 		super();
@@ -40,7 +40,7 @@ public class TranslationRule {
 	// -- Getters and Setters
 
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	public String getObject() {
@@ -48,7 +48,7 @@ public class TranslationRule {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param expression
 	 */
 	public void setObject(String expression) {
@@ -56,7 +56,7 @@ public class TranslationRule {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	public String getPredicate() {
@@ -64,7 +64,7 @@ public class TranslationRule {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param predicate
 	 */
 	public void setPredicate(String predicate) {
@@ -72,7 +72,7 @@ public class TranslationRule {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	public String getDataType() {
@@ -80,7 +80,7 @@ public class TranslationRule {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param dataType
 	 */
 	public void setDataType(String dataType) {
@@ -88,7 +88,7 @@ public class TranslationRule {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	public Boolean getIsLiteral() {
@@ -96,15 +96,15 @@ public class TranslationRule {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param isLiteral
 	 */
 	public void setIsLiteral(Boolean isLiteral) {
 		this.isLiteral = isLiteral;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	public String getLanguage() {
@@ -112,7 +112,7 @@ public class TranslationRule {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param language
 	 */
 	public void setLanguage(String language) {
@@ -122,7 +122,7 @@ public class TranslationRule {
 
 	// Other methods
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	public List<String> fetchDataReferences(){

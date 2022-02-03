@@ -44,12 +44,12 @@ public class Mapping {
 
 	/**
 	 * Gets the {@link Datasource} of this {@link Mapping}
-	 * @return a list of {@link Datasource} 
+	 * @return a list of {@link Datasource}
 	 */
 	public List<Datasource> getDatasources() {
 		return datasources;
 	}
-	
+
 	/**
 	 * Sets the {@link Datasource} of this {@link Mapping}
 	 * @param datasources a new list of {@link Datasource}
@@ -60,7 +60,7 @@ public class Mapping {
 
 	/**
 	 * Gets the {@link TranslationRules} of this {@link Mapping}
-	 * @return a list of {@link TranslationRules} 
+	 * @return a list of {@link TranslationRules}
 	 */
 	public List<TranslationRules> getTranslationRules() {
 		return translationRules;
@@ -76,14 +76,14 @@ public class Mapping {
 
 	/**
 	 * Gets the {@link LinkRule} of this {@link Mapping}
-	 * @return a list of {@link LinkRule} 
+	 * @return a list of {@link LinkRule}
 	 */
 	public List<LinkRule> getLinkRules() {
 		return linkRules;
 	}
 
 	/**
-	 * Sets the {@link LinkRule} of this {@link Mapping} 
+	 * Sets the {@link LinkRule} of this {@link Mapping}
 	 * @param linkRules a new list of {@link LinkRule}
 	 */
 	public void setLinkRules(List<LinkRule> linkRules) {

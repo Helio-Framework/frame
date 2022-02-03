@@ -31,7 +31,7 @@ import helio.blueprints.exceptions.IncorrectMappingException;
 public class Datasource {
 
 	private static final String KEY_TYPE = "type";
-	
+
 	@Expose
 	private String id;
 
@@ -58,7 +58,7 @@ public class Datasource {
 
 	/**
 	 * Quick constructor
-	 * 
+	 *
 	 * @param id       the id of the {@link Datasource}
 	 * @param handler  a {@link DataHandler}
 	 * @param provider a {@link DataProvider}
@@ -70,10 +70,10 @@ public class Datasource {
 	}
 
 	// Getters & Setters
-	
+
 	/**
 	 * Get the id of the {@link Datasource}
-	 * 
+	 *
 	 * @return an id
 	 */
 	public String getId() {
@@ -82,7 +82,7 @@ public class Datasource {
 
 	/**
 	 * Sets the id of the {@link Datasource}
-	 * 
+	 *
 	 * @param id the id
 	 */
 	public void setId(String id) {
@@ -91,7 +91,7 @@ public class Datasource {
 
 	/**
 	 * Gets the {@link DataHandler}
-	 * 
+	 *
 	 * @return the {@link DataHandler}
 	 */
 	public DataHandler getDataHandler() {
@@ -100,7 +100,7 @@ public class Datasource {
 
 	/**
 	 * Sets a new {@link DataHandler}
-	 * 
+	 *
 	 * @param dataHandler a new {@link DataHandler}
 	 */
 	public void setDataHandler(DataHandler dataHandler) {
@@ -109,7 +109,7 @@ public class Datasource {
 
 	/**
 	 * Gets the {@link DataProvider}
-	 * 
+	 *
 	 * @return the {@link DataProvider}
 	 */
 	public DataProvider getDataProvider() {
@@ -118,7 +118,7 @@ public class Datasource {
 
 	/**
 	 * Sets a new {@link DataProvider}
-	 * 
+	 *
 	 * @param dataProvider a new {@link DataProvider}
 	 */
 	public void setDataProvider(DataProvider dataProvider) {
@@ -128,7 +128,7 @@ public class Datasource {
 	/**
 	 * Gets the refresh time, null if the {@link Datasource} is synchronous or
 	 * asynchronous
-	 * 
+	 *
 	 * @return the refresh time
 	 */
 	public Integer getRefresh() {
@@ -137,7 +137,7 @@ public class Datasource {
 
 	/**
 	 * Sets a refresh time for a scheduled {@link Datasource}
-	 * 
+	 *
 	 * @param refresh the refresh time
 	 */
 	public void setRefresh(int refresh) {
@@ -146,7 +146,7 @@ public class Datasource {
 
 	/**
 	 * Gets the configuration of the {@link DataHandler}
-	 * 
+	 *
 	 * @return a {@link JsonObject} configuration
 	 */
 	public JsonObject getHandlerConfiguration() {
@@ -155,14 +155,14 @@ public class Datasource {
 
 	/**
 	 * Sets a new {@link JsonObject} configuration for the {@link DataHandler}
-	 * 
+	 *
 	 * @param handlerConfiguration a new {@link JsonObject} configuration
 	 */
 	public void setHandlerConfiguration(JsonObject handlerConfiguration) {
 		packHandler(handlerConfiguration);
 		this.handlerConfiguration = handlerConfiguration;
 	}
-	
+
 	private void packHandler(JsonObject json) {
 		try {
 			if (!json.has(KEY_TYPE)) {
@@ -171,7 +171,7 @@ public class Datasource {
 			} else {
 				String name = json.get(KEY_TYPE).getAsString();
 				if (name != null && !name.isEmpty()) {
-					handler = Components.dataHandlers.get(name);
+					handler = Components.getDataHandlers().get(name);
 					if (handler == null)
 						throw new IncorrectMappingException("Data handler specified in the mapping does not exist");
 					handler.configure(json);
@@ -186,7 +186,7 @@ public class Datasource {
 
 	/**
 	 * Gets the configuration of the {@link DataProvider}
-	 * 
+	 *
 	 * @return a {@link JsonObject} configuration
 	 */
 	public JsonObject getProviderConfiguration() {
@@ -195,14 +195,14 @@ public class Datasource {
 
 	/**
 	 * Sets a new {@link JsonObject} configuration for the {@link DataProvider}
-	 * 
+	 *
 	 * @param providerConfiguration a new {@link JsonObject} configuration
 	 */
 	public void setProviderConfiguration(JsonObject providerConfiguration) {
 		packProvider(providerConfiguration);
 		this.providerConfiguration = providerConfiguration;
 	}
-	
+
 	private void packProvider(JsonObject json) {
 		try {
 			if (!json.has(KEY_TYPE)) {
@@ -211,7 +211,7 @@ public class Datasource {
 			} else {
 				String name = json.get(KEY_TYPE).getAsString();
 				if (name != null && !name.isEmpty()) {
-					provider = Components.dataProviders.get(name);
+					provider = Components.getDataProviders().get(name);
 					if (provider == null)
 						throw new IncorrectMappingException("Data provider specified in the mapping does not exist");
 					provider.configure(json);
@@ -223,7 +223,7 @@ public class Datasource {
 			e.printStackTrace();
 		}
 	}
-	
+
 
 	// -- Ancillary
 

@@ -31,7 +31,7 @@ public class TranslationRules {
 
 	// -- Constructor
 	/**
-	 * 
+	 *
 	 */
 	public TranslationRules() {
 		super();
@@ -40,11 +40,11 @@ public class TranslationRules {
 	}
 
 	// -- Getters & Setters
-	
+
 	/**
 	 * This method confirms if a {@link Datasource} is binded to this {@link TranslationRules}
-	 * @param dataSourceId the if of the {@link Datasource} 
-	 * @return true if the {@link Datasource} is binded to the {@link TranslationRules} 
+	 * @param dataSourceId the if of the {@link Datasource}
+	 * @return true if the {@link Datasource} is binded to the {@link TranslationRules}
 	 */
 	public Boolean hasDataSourceId(String dataSourceId) {
 		return datasourcesId.contains(dataSourceId);

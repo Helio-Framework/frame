@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ *
  * @author andreacimmino
  *
  */
 public class Expresions {
 
 	// -- Attributes
-	
+
 	private static final char EXPRESION_TOKEN_BEGIN = '{';
 	private static final char EXPRESION_TOKEN_END = '}';
 	private static final char EXPRESION_TOKEN_IGNORE = '\\';
