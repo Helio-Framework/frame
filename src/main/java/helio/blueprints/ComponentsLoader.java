@@ -31,7 +31,6 @@ class ComponentsLoader<C> {
 			            getClass().getClassLoader()
 			        );
 			       Package[]packages = loader.getDefinedPackages();
-			       Arrays.asList(packages).forEach(elem -> System.out.println(elem));
 			       Class<?> clazz = Class.forName(classpath, true, loader);
 			        Class<? extends C> newClass = clazz.asSubclass(parentClass);
 			        Constructor<? extends C> constructor = newClass.getConstructor();
