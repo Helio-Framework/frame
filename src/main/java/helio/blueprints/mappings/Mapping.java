@@ -6,6 +6,8 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import helio.blueprints.exceptions.IncorrectMappingException;
+
 /**
  * This class codifies a set of objects used to to generate RDF.<p>
  * The {@link Mapping} consist on a list of {@link Datasource}, a list of {@link TranslationRules}, and a list of {@link LinkRule}.
@@ -89,6 +91,21 @@ public class Mapping {
 	public void setLinkRules(List<LinkRule> linkRules) {
 		this.linkRules = linkRules;
 	}
+	
+	/**
+	 * This method checks that the mapping is correct and valid
+	 * @throws IncorrectMappingException
+	 */
+	public void checkMapping() throws IncorrectMappingException {
+		if(this.datasources.isEmpty() && this.translationRules.isEmpty() && this.linkRules.isEmpty())
+			throw new IncorrectMappingException("The mapping is empty");
+		int size = this.datasources.size();
+		for(int index=0; index < size; index++) {
+			Datasource ds = this.datasources.get(index);
+			ds.getDataHandler();
+			ds.getDataProvider();
+		}
+	}
 
 	// -- Ancillary
 
@@ -128,7 +145,7 @@ public class Mapping {
 		return true;
 	}
 
-
+	
 
 }
 

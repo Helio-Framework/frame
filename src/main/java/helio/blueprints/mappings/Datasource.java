@@ -93,8 +93,10 @@ public class Datasource {
 	 * Gets the {@link DataHandler}
 	 *
 	 * @return the {@link DataHandler}
+	 * @throws IncorrectMappingException 
 	 */
-	public DataHandler getDataHandler() {
+	public DataHandler getDataHandler() throws IncorrectMappingException {
+		packHandler(handlerConfiguration);
 		return handler;
 	}
 
@@ -111,8 +113,10 @@ public class Datasource {
 	 * Gets the {@link DataProvider}
 	 *
 	 * @return the {@link DataProvider}
+	 * @throws IncorrectMappingException 
 	 */
-	public DataProvider getDataProvider() {
+	public DataProvider getDataProvider() throws IncorrectMappingException {
+		packProvider(providerConfiguration);
 		return provider;
 	}
 
@@ -157,14 +161,14 @@ public class Datasource {
 	 * Sets a new {@link JsonObject} configuration for the {@link DataHandler}
 	 *
 	 * @param handlerConfiguration a new {@link JsonObject} configuration
+	 * @throws IncorrectMappingException 
 	 */
-	public void setHandlerConfiguration(JsonObject handlerConfiguration) {
+	public void setHandlerConfiguration(JsonObject handlerConfiguration) throws IncorrectMappingException {
 		packHandler(handlerConfiguration);
 		this.handlerConfiguration = handlerConfiguration;
 	}
 
-	private void packHandler(JsonObject json) {
-		try {
+	private void packHandler(JsonObject json) throws IncorrectMappingException {
 			if (!json.has(KEY_TYPE)) {
 				throw new IncorrectMappingException(
 						"the JSON document for the provider must contain the mandatory key 'type' with a correct value");
@@ -173,15 +177,12 @@ public class Datasource {
 				if (name != null && !name.isEmpty()) {
 					handler = Components.getDataHandlers().get(name);
 					if (handler == null)
-						throw new IncorrectMappingException("Data handler specified in the mapping does not exist");
+						throw new IncorrectMappingException("Data handler specified in the mapping does not exist: "+name);
 					handler.configure(json);
 				} else {
 					throw new IncorrectMappingException("Value of key 'type' can not be null or blank");
 				}
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**
@@ -197,14 +198,14 @@ public class Datasource {
 	 * Sets a new {@link JsonObject} configuration for the {@link DataProvider}
 	 *
 	 * @param providerConfiguration a new {@link JsonObject} configuration
+	 * @throws IncorrectMappingException 
 	 */
-	public void setProviderConfiguration(JsonObject providerConfiguration) {
+	public void setProviderConfiguration(JsonObject providerConfiguration) throws IncorrectMappingException {
 		packProvider(providerConfiguration);
 		this.providerConfiguration = providerConfiguration;
 	}
 
-	private void packProvider(JsonObject json) {
-		try {
+	private void packProvider(JsonObject json) throws IncorrectMappingException {
 			if (!json.has(KEY_TYPE)) {
 				throw new IncorrectMappingException(
 						"the JSON document for the provider must contain the mandatory key 'type' with a correct value");
@@ -213,15 +214,12 @@ public class Datasource {
 				if (name != null && !name.isEmpty()) {
 					provider = Components.getDataProviders().get(name);
 					if (provider == null)
-						throw new IncorrectMappingException("Data provider specified in the mapping does not exist");
+						throw new IncorrectMappingException("Data provider specified in the mapping does not exist:" +name);
 					provider.configure(json);
 				} else {
 					throw new IncorrectMappingException("Value of key 'type' can not be null or blank");
 				}
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 
