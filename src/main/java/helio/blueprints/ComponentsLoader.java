@@ -30,7 +30,6 @@ class ComponentsLoader<C> {
 			            new URL[] { jar.toURI().toURL() },
 			            getClass().getClassLoader()
 			        );
-			       Package[]packages = loader.getDefinedPackages();
 			       Class<?> clazz = Class.forName(classpath, true, loader);
 			        Class<? extends C> newClass = clazz.asSubclass(parentClass);
 			        Constructor<? extends C> constructor = newClass.getConstructor();
