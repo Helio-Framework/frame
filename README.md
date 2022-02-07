@@ -10,7 +10,7 @@ Blueprints for developing new Helio components (**use java 11 or above**):
 	<dependency>
 		<groupId>io.github.helio-ecosystem</groupId>
 		<artifactId>helio-blueprints</artifactId>
-		<version>0.4.1</version>
+		<version>0.4.2</version>
 	</dependency>
 ````
 
