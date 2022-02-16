@@ -1,7 +1,11 @@
 package helio.blueprints;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import helio.blueprints.components.DataHandler;
 import helio.blueprints.components.DataProvider;
@@ -27,44 +31,73 @@ public class Components {
 	public static final String EXTENSION_TYPE_READER = "MappingReader";
 	public static final String EXTENSION_TYPE_FUNCTION = "MappingFunctions";
 
-
-
+	private static List<Component> registered = new LinkedList<>();
 
 	private Components() {
 		super();
 	}
 
-
+	// registration methods
+	public static void registerAndLoad(String source, String clazz, ComponentType type) throws ExtensionNotFoundException {
+		Component cmp = new Component(source, clazz, type);
+		registered.add(cmp);
+		load(cmp);
+	}
+	
+	public static void registerAndLoad(Component cmp) throws ExtensionNotFoundException {
+		registered.add(cmp);
+		load(cmp);
+	}
+	
+	public static void register(String source, String clazz, ComponentType type) {
+		registered.add(new Component(source, clazz, type));
+	}
+	
+	public static void register(Component component) {
+		registered.add(component);
+	}
+	
+	public static List<Component> getRegistered(){
+		return registered;
+	}
+	
 	// Load Methods
+	
 	/**
-	 * This method allows to register a component
-	 * @param source the path to the jar, it can be a URL or a local directory
-	 * @param clazz the full class specification, e.g., components.external.handlers.JsonHandler
-	 * @param type one of the types available in the {@link Components} class: Components.EXTENSION_TYPE_PROVIDER, Components.EXTENSION_TYPE_HANDLER, Components.EXTENSION_TYPE_READER, Components.EXTENSION_TYPE_FUNCTION
-	 * @throws ExtensionNotFoundException is thrown when the component was not found
+	 * This method allows to register a component 
+	 * @param className The class name to be loaded as an object
+	 * @throws ExtensionNotFoundException is thrown if the name does not correspond to any registered component
 	 */
-	public static void registerComponent(String source, String clazz, String type) throws ExtensionNotFoundException {
-		String name = clazz.substring(clazz.lastIndexOf('.')+1);
+	public static void load(String className) throws ExtensionNotFoundException {
+		Optional<Component> cmpOpt = registered.parallelStream().filter(cmp -> cmp.getClazz().endsWith("."+className)).findFirst();
+		if(!cmpOpt.isPresent())
+			throw new ExtensionNotFoundException("check if the class was registered as a component");
+		Component cmp = cmpOpt.get();
+		load(cmp, className);
 
-		if (type.equals(EXTENSION_TYPE_PROVIDER)) {
-			DataProvider provider = buildDataProvider(source, clazz);
-			dataProviders.put(name, provider); //TODO: if name exists throw exception it could happen that two jars have a class with the same name
-		}else if (type.equals(EXTENSION_TYPE_HANDLER)) {
-			DataHandler handler = buildDataHandler(source, clazz);
-			dataHandlers.put(name, handler); //TODO:  if name exists throw exception it could happen that two jars have a class with the same name
+	}
+	public static void load(Component component) throws ExtensionNotFoundException {
+		String clazz = component.getClazz();
+		String name = component.getClazz().substring(clazz.lastIndexOf('.')+1);
+		load(component, name);
+	}
+	
+	protected static void load(Component component, String className) throws ExtensionNotFoundException {
+		if (component.getType().equals(ComponentType.PROVIDER)) {
+			DataProvider provider = buildDataProvider(component.getSource(), component.getClazz());
+			dataProviders.put(className, provider); 
+		}else if (component.getType().equals(ComponentType.HANDLER)) {
+			DataHandler handler = buildDataHandler(component.getSource(), component.getClazz());
+			dataHandlers.put(className, handler); 
 
-		}else if (type.equals(EXTENSION_TYPE_FUNCTION)) {
-			MappingFunctions function = buildMappingFunctions(source, clazz);
-			mappingFunctions.put(name, function); //TODO:  if name exists throw exception it could happen that two jars have a class with the same name
+		}else if (component.getType().equals(ComponentType.FUNCTION)) {
+			MappingFunctions function = buildMappingFunctions(component.getSource(), component.getClazz());
+			mappingFunctions.put(className, function); 
 
-		}else if (type.equals(EXTENSION_TYPE_READER)) {
-			MappingReader reader = buildMappingReader(source, clazz);
-			mappingReaders.put(name, reader);  //TODO:  if name exists throw exception it could happen that two jars have a class with the same name
-
-		}else {
-			//TODO: THROW AN EXCEPTION
+		}else if (component.getType().equals(ComponentType.READER)) {
+			MappingReader reader = buildMappingReader(component.getSource(), component.getClazz());
+			mappingReaders.put(className, reader);  //TODO:  if name exists throw exception it could happen that two jars have a class with the same name
 		}
-
 	}
 
 	/**

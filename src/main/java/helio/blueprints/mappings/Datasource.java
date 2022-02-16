@@ -9,6 +9,7 @@ import com.google.gson.annotations.SerializedName;
 import helio.blueprints.Components;
 import helio.blueprints.components.DataHandler;
 import helio.blueprints.components.DataProvider;
+import helio.blueprints.exceptions.ExtensionNotFoundException;
 import helio.blueprints.exceptions.IncorrectMappingException;
 
 /**
@@ -94,8 +95,9 @@ public class Datasource {
 	 *
 	 * @return the {@link DataHandler}
 	 * @throws IncorrectMappingException 
+	 * @throws ExtensionNotFoundException 
 	 */
-	public DataHandler getDataHandler() throws IncorrectMappingException {
+	public DataHandler getDataHandler() throws IncorrectMappingException, ExtensionNotFoundException {
 		packHandler(handlerConfiguration);
 		return handler;
 	}
@@ -114,8 +116,9 @@ public class Datasource {
 	 *
 	 * @return the {@link DataProvider}
 	 * @throws IncorrectMappingException 
+	 * @throws ExtensionNotFoundException 
 	 */
-	public DataProvider getDataProvider() throws IncorrectMappingException {
+	public DataProvider getDataProvider() throws IncorrectMappingException, ExtensionNotFoundException {
 		packProvider(providerConfiguration);
 		return provider;
 	}
@@ -162,19 +165,22 @@ public class Datasource {
 	 *
 	 * @param handlerConfiguration a new {@link JsonObject} configuration
 	 * @throws IncorrectMappingException 
+	 * @throws ExtensionNotFoundException 
 	 */
-	public void setHandlerConfiguration(JsonObject handlerConfiguration) throws IncorrectMappingException {
+	public void setHandlerConfiguration(JsonObject handlerConfiguration) throws IncorrectMappingException, ExtensionNotFoundException {
 		packHandler(handlerConfiguration);
 		this.handlerConfiguration = handlerConfiguration;
 	}
 
-	private void packHandler(JsonObject json) throws IncorrectMappingException {
+	private void packHandler(JsonObject json) throws IncorrectMappingException, ExtensionNotFoundException {
 			if (!json.has(KEY_TYPE)) {
 				throw new IncorrectMappingException(
 						"the JSON document for the provider must contain the mandatory key 'type' with a correct value");
 			} else {
 				String name = json.get(KEY_TYPE).getAsString();
 				if (name != null && !name.isEmpty()) {
+					if(!Components.getDataHandlers().containsKey(name))
+						Components.load(name);
 					handler = Components.getDataHandlers().get(name);
 					if (handler == null)
 						throw new IncorrectMappingException("Data handler specified in the mapping does not exist: "+name);
@@ -199,19 +205,22 @@ public class Datasource {
 	 *
 	 * @param providerConfiguration a new {@link JsonObject} configuration
 	 * @throws IncorrectMappingException 
+	 * @throws ExtensionNotFoundException 
 	 */
-	public void setProviderConfiguration(JsonObject providerConfiguration) throws IncorrectMappingException {
+	public void setProviderConfiguration(JsonObject providerConfiguration) throws IncorrectMappingException, ExtensionNotFoundException {
 		packProvider(providerConfiguration);
 		this.providerConfiguration = providerConfiguration;
 	}
 
-	private void packProvider(JsonObject json) throws IncorrectMappingException {
+	private void packProvider(JsonObject json) throws IncorrectMappingException, ExtensionNotFoundException {
 			if (!json.has(KEY_TYPE)) {
 				throw new IncorrectMappingException(
 						"the JSON document for the provider must contain the mandatory key 'type' with a correct value");
 			} else {
 				String name = json.get(KEY_TYPE).getAsString();
 				if (name != null && !name.isEmpty()) {
+					if(!Components.getDataProviders().containsKey(name))
+						Components.load(name);
 					provider = Components.getDataProviders().get(name);
 					if (provider == null)
 						throw new IncorrectMappingException("Data provider specified in the mapping does not exist:" +name);

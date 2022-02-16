@@ -6,6 +6,7 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import helio.blueprints.exceptions.ExtensionNotFoundException;
 import helio.blueprints.exceptions.IncorrectMappingException;
 
 /**
@@ -95,8 +96,9 @@ public class Mapping {
 	/**
 	 * This method checks that the mapping is correct and valid
 	 * @throws IncorrectMappingException
+	 * @throws ExtensionNotFoundException 
 	 */
-	public void checkMapping() throws IncorrectMappingException {
+	public void checkMapping() throws IncorrectMappingException, ExtensionNotFoundException {
 		if(this.datasources.isEmpty() && this.translationRules.isEmpty() && this.linkRules.isEmpty())
 			throw new IncorrectMappingException("The mapping is empty");
 		int size = this.datasources.size();
