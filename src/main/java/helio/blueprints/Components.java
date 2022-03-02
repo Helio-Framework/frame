@@ -1,6 +1,5 @@
 package helio.blueprints;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -71,7 +70,7 @@ public class Components {
 	public static void load(String className) throws ExtensionNotFoundException {
 		Optional<Component> cmpOpt = registered.parallelStream().filter(cmp -> cmp.getClazz().endsWith("."+className)).findFirst();
 		if(!cmpOpt.isPresent())
-			throw new ExtensionNotFoundException("check if the class was registered as a component");
+			throw new ExtensionNotFoundException("check if the class privied "+className+" was registered as a component");
 		Component cmp = cmpOpt.get();
 		load(cmp, className);
 

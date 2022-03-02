@@ -1,5 +1,6 @@
 package helio.blueprints.components;
 
+import helio.blueprints.exceptions.ExtensionNotFoundException;
 import helio.blueprints.exceptions.IncompatibleMappingException;
 import helio.blueprints.exceptions.IncorrectMappingException;
 import helio.blueprints.mappings.Mapping;
@@ -17,8 +18,9 @@ public interface MappingReader {
 	 * @return a serialized {@link Mapping}
 	 * @throws IncompatibleMappingException is thrown when the representation is not compatible with a {@link MappingReader}
 	 * @throws IncorrectMappingException if the representation of a mapping has syntax errors
+	 * @throws ExtensionNotFoundException if the mapping referenced a {@link Component} not registered
 	 */
-	public Mapping readMapping(String content) throws IncompatibleMappingException, IncorrectMappingException;
+	public Mapping readMapping(String content) throws IncompatibleMappingException, IncorrectMappingException, ExtensionNotFoundException;
 
 
 }

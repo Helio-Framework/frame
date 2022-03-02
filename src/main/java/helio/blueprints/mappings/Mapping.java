@@ -3,6 +3,8 @@ package helio.blueprints.mappings;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -147,6 +149,13 @@ public class Mapping {
 		return true;
 	}
 
+	
+	private static final Gson gson = new GsonBuilder()
+			  .excludeFieldsWithoutExposeAnnotation()
+			  .create();
+	public String toJson() {
+		return gson.toJson(this);
+	}
 	
 
 }

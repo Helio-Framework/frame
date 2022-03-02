@@ -5,11 +5,11 @@ import java.util.Objects;
 public class Component {
 
 
-	private String source;
+	protected String source;
 
-	private String clazz;
+	protected String clazz;
 
-	private ComponentType type;
+	protected ComponentType type;
 
 	
 	public Component() {
@@ -47,7 +47,6 @@ public class Component {
 	public void setType(ComponentType type) {
 		this.type = type;
 	}
-
 
 	@Override
 	public int hashCode() {
