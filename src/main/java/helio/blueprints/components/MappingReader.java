@@ -18,7 +18,7 @@ public interface MappingReader {
 	 * @return a serialized {@link Mapping}
 	 * @throws IncompatibleMappingException is thrown when the representation is not compatible with a {@link MappingReader}
 	 * @throws IncorrectMappingException if the representation of a mapping has syntax errors
-	 * @throws ExtensionNotFoundException if the mapping referenced a {@link Component} not registered
+	 * @throws ExtensionNotFoundException if the mapping referenced a Component not registered
 	 */
 	public Mapping readMapping(String content) throws IncompatibleMappingException, IncorrectMappingException, ExtensionNotFoundException;
 

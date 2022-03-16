@@ -45,7 +45,8 @@ public class Datasource {
 	@Expose
 	@SerializedName(value = "provider")
 	private JsonObject providerConfiguration;
-
+	
+	@Expose
 	private Integer refresh;
 
 	// -- Constructor

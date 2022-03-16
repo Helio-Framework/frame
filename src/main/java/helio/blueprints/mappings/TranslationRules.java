@@ -1,7 +1,6 @@
 package helio.blueprints.mappings;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,8 +24,8 @@ public class TranslationRules {
 	@Expose
 	private List<TranslationRule> properties;
 	@Expose
-	@SerializedName(value = "datasources", alternate = "datasource_ids")
-	private Set<String> datasourcesId;
+	@SerializedName(value = "datasource", alternate = "datasource_id")
+	private String datasourceId;
 
 
 	// -- Constructor
@@ -36,7 +35,6 @@ public class TranslationRules {
 	public TranslationRules() {
 		super();
 		properties = new ArrayList<>();
-		datasourcesId = new HashSet<>();
 	}
 
 	// -- Getters & Setters
@@ -47,7 +45,7 @@ public class TranslationRules {
 	 * @return true if the {@link Datasource} is binded to the {@link TranslationRules}
 	 */
 	public Boolean hasDataSourceId(String dataSourceId) {
-		return datasourcesId.contains(dataSourceId);
+		return datasourceId.equals(dataSourceId);
 	}
 
 	/**
@@ -99,19 +97,19 @@ public class TranslationRules {
 	}
 
 	/**
-	 * Gets the list of {@link Datasource}
-	 * @return a list of {@link Datasource}
+	 * Gets the {@link Datasource} id binded to this {@link TranslationRule} 
+	 * @return a {@link Datasource} id
 	 */
-	public Set<String> getDatasourcesId() {
-		return datasourcesId;
+	public String getDatasourceId() {
+		return datasourceId;
 	}
 
 	/**
-	 * Sets a new list of {@link Datasource} to fetch and handle the data
-	 * @param datasourcesId a list of {@link Datasource}
+	 * Sets a new id for a {@link Datasource}
+	 * @param datasourceId an id of a new {@link Datasource}
 	 */
-	public void setDatasourcesId(Set<String> datasourcesId) {
-		this.datasourcesId = datasourcesId;
+	public void setDatasourceId(String datasourceId) {
+		this.datasourceId = datasourceId;
 	}
 
 	// -- Other methods

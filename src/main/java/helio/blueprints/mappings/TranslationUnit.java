@@ -39,4 +39,10 @@ public interface TranslationUnit {
 	 * @return true if the {@link TranslationUnit} generates RDF with the provided subject, false otherwise
 	 */
 	public boolean generatesSubject(String subject);
+
+	/**
+	 * This method retrieves the associated {@link Datasource} of a TranslationUnit
+	 * @return a {@link Datasource} 
+	 */
+	public Datasource getDatasource();
 }
