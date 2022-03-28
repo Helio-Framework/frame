@@ -1,3 +1,4 @@
+
 # Blueprints for Helio components
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.helio-ecosystem/helio-blueprints.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.helio-ecosystem%22%20AND%20a:%22helio-blueprints%22) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
@@ -14,7 +15,7 @@ Blueprints for developing new Helio components (**use java 11 or above**):
 	</dependency>
 ````
 
-### 2. Add some logging
+### 2. Add some logging
 It is also strongly recommended to add log traces in the component, for this purpose we suggest to add the following dependencies although any log tracker can be used
 ````xml
 	<!-- Loggin -->
@@ -123,3 +124,8 @@ The output jar of the component must include all the third-party dependencies. F
 
 ### Publishing the new component
 ### Using the component in Helio
+
+
+### Developing a new Mapping Processor
+
+use `$ref.get('[VAR]')` for enclosing data references in the velocity template, e.g., `$ref.get('$.values.[*].measure')`

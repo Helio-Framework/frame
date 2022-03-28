@@ -1,10 +1,9 @@
 package helio.blueprints.exceptions;
 
-import helio.blueprints.components.MappingReader;
-import helio.blueprints.mappings.Mapping;
+import helio.blueprints.components.MappingProcessor;
 
 /**
- * This exception is thrown when a {@link Mapping} is not compatible with a {@link MappingReader}. In other words, the {@link MappingReader} is not able to process the {@link Mapping}, although the {@link Mapping} can be syntactically correct.
+ * This exception is thrown when a {@link MappingProcessor} detects something that not compatible with its mapping language. In other words, the {@link MappingProcessor} is not able to process a provided mapping, although such mapping can be syntactically correct for another language.
  * @author Andrea Cimmino Arriaga
  */
 public class IncompatibleMappingException extends Exception{

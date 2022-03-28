@@ -2,7 +2,7 @@ package helio.blueprints;
 
 public enum ComponentType {
 
-	PROVIDER("DataProvider"), HANDLER("DataHandler"), READER("MappingReader"), FUNCTION("MappingFunction");
+	PROVIDER("DataProvider"), HANDLER("DataHandler"), PROCESSOR("MappingProcessor"), FUNCTION("MappingFunction");
 
 	private final String componentType;
 

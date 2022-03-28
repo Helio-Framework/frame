@@ -1,4 +1,4 @@
-package helio.blueprints.mappings;
+package helio.blueprints.objects;
 
 /**
  * This class codifies the types of {@link TranslationUnit} available
