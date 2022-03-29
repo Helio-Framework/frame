@@ -2,8 +2,6 @@ package helio.blueprints.components;
 
 import java.io.InputStream;
 
-import helio.blueprints.objects.TranslationUnit;
-
 
 /**
  * This components asynchronous {@link DataProvider}.

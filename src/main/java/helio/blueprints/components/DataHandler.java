@@ -7,7 +7,6 @@ import java.util.Queue;
 
 import com.google.gson.JsonObject;
 
-import helio.blueprints.objects.TranslationUnit;
 
 /**
  * These components are meant to handle pieces of data in a specific format, allowing the {@link TranslationUnit} splitting data, and accessing specific pieces in order to generate an RDF document.

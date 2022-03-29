@@ -29,7 +29,7 @@ public class Components {
 	public static final String EXTENSION_TYPE_HANDLER = "DataHandler";
 	public static final String EXTENSION_TYPE_READER = "MappingProcessor";
 	public static final String EXTENSION_TYPE_FUNCTION = "MappingFunctions";
-
+	
 	private static List<Component> registered = new LinkedList<>();
 
 	private Components() {
@@ -95,9 +95,10 @@ public class Components {
 
 		}else if (component.getType().equals(ComponentType.PROCESSOR)) {
 			MappingProcessor reader = buildMappingLanguage(component.getSource(), component.getClazz());
-			mappingProcessors.put(className, reader);  //TODO:  if name exists throw exception it could happen that two jars have a class with the same name
+			mappingProcessors.put(className, reader); 
 		}
 	}
+
 
 	/**
 	 * Returns the {@link DataProvider} components
@@ -130,6 +131,9 @@ public class Components {
 	public static Map<String, MappingFunctions> getMappingFunctions() {
 		return mappingFunctions;
 	}
+	
+	
+
 
 	// Building methods
 	private static DataProvider buildDataProvider(String source, String clazz) throws ExtensionNotFoundException {

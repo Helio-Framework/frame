@@ -2,6 +2,7 @@ package helio.blueprints;
 
 import java.util.Objects;
 
+
 public class Component {
 
 

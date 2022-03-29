@@ -11,7 +11,7 @@ Blueprints for developing new Helio components (**use java 11 or above**):
 	<dependency>
 		<groupId>io.github.helio-ecosystem</groupId>
 		<artifactId>helio-blueprints</artifactId>
-		<version>0.4.4</version>
+		<version>0.4.9</version>
 	</dependency>
 ````
 
@@ -62,7 +62,7 @@ The output jar of the component must include all the third-party dependencies. F
 	</build>
 ````
 
-### 4. Putting all togueder
+### 4. Putting all together
 
 ````xml
 	<properties>
@@ -78,7 +78,7 @@ The output jar of the component must include all the third-party dependencies. F
 		<dependency>
 			<groupId>io.github.helio-ecosystem</groupId>
 			<artifactId>helio-blueprints</artifactId>
-			<version>0.4.4</version>
+			<version>0.4.9</version>
 		</dependency>
 		<!-- Loggin -->
 		<dependency>
