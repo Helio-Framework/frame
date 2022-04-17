@@ -3,6 +3,8 @@ package helio.blueprints;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import helio.blueprints.exceptions.TranslationUnitExecutionException;
+
 /**
  * The {@link TranslationUnit} implementations are responsible of providing executable tasks that translate data from heterogeneous data sources into RDF.
  * @author Andrea Cimmino Arriaga
@@ -26,8 +28,8 @@ public interface TranslationUnit extends ConfigurableBlueprint {
 
 	public Callable<Void> getTask();
 	
-	public List<String> getTranslations();
+	public List<String> getDataTranslated() throws TranslationUnitExecutionException;
 	
-	public void flush();
+	public void flushDataTranslated();
 	
 }
