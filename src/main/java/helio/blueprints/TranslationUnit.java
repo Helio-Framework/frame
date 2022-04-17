@@ -30,5 +30,7 @@ public interface TranslationUnit extends ConfigurableBlueprint {
 	public List<String> getDataTranslated() throws TranslationUnitExecutionException;
 	
 	public void flushDataTranslated() throws TranslationUnitExecutionException;
-	
+
+	public int getScheduledTime();
+	public void setScheduledTime(int scheduledTime);
 }
