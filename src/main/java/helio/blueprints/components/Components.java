@@ -1,4 +1,4 @@
-package helio.blueprints;
+package helio.blueprints.components;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import helio.blueprints.components.DataHandler;
-import helio.blueprints.components.DataProvider;
-import helio.blueprints.components.MappingFunctions;
-import helio.blueprints.components.MappingProcessor;
+import helio.blueprints.DataHandler;
+import helio.blueprints.DataProvider;
+import helio.blueprints.MappingFunctions;
+import helio.blueprints.UnitBuilder;
 import helio.blueprints.exceptions.ExtensionNotFoundException;
 
 /**
@@ -21,13 +21,13 @@ public class Components {
 
 	private static Map<String, DataProvider> dataProviders = new HashMap<>();
 	private static Map<String, DataHandler> dataHandlers = new HashMap<>();
-	private static Map<String, MappingProcessor> mappingProcessors = new HashMap<>();
+	private static Map<String, UnitBuilder> mappingProcessors = new HashMap<>();
 	private static Map<String, MappingFunctions> mappingFunctions = new HashMap<>();
 
 
 	public static final String EXTENSION_TYPE_PROVIDER = "DataProvider";
 	public static final String EXTENSION_TYPE_HANDLER = "DataHandler";
-	public static final String EXTENSION_TYPE_READER = "MappingProcessor";
+	public static final String EXTENSION_TYPE_READER = "UnitBuilder";
 	public static final String EXTENSION_TYPE_FUNCTION = "MappingFunctions";
 	
 	private static List<Component> registered = new LinkedList<>();
@@ -93,8 +93,8 @@ public class Components {
 			MappingFunctions function = buildMappingFunctions(component.getSource(), component.getClazz());
 			mappingFunctions.put(className, function); 
 
-		}else if (component.getType().equals(ComponentType.PROCESSOR)) {
-			MappingProcessor reader = buildMappingLanguage(component.getSource(), component.getClazz());
+		}else if (component.getType().equals(ComponentType.BUILDER)) {
+			UnitBuilder reader = buildMappingLanguage(component.getSource(), component.getClazz());
 			mappingProcessors.put(className, reader); 
 		}
 	}
@@ -117,10 +117,10 @@ public class Components {
 	}
 
 	/**
-	 * Returns the {@link MappingProcessor} components
-	 * @return a map with the name of the class as key and the {@link MappingProcessor} as value
+	 * Returns the {@link UnitBuilder} components
+	 * @return a map with the name of the class as key and the {@link UnitBuilder} as value
 	 */
-	public static Map<String, MappingProcessor> getMappingProcessors() {
+	public static Map<String, UnitBuilder> getMappingProcessors() {
 		return mappingProcessors;
 	}
 
@@ -174,11 +174,11 @@ public class Components {
 	}
 
 
-	private static MappingProcessor buildMappingLanguage(String source, String clazz) throws ExtensionNotFoundException {
-		MappingProcessor materialiserTranslatorPlugins = null;
+	private static UnitBuilder buildMappingLanguage(String source, String clazz) throws ExtensionNotFoundException {
+		UnitBuilder materialiserTranslatorPlugins = null;
 		try {
-			ComponentsLoader<MappingProcessor> loader = new ComponentsLoader<>();
-			materialiserTranslatorPlugins = loader.loadClass(source, clazz, MappingProcessor.class);
+			ComponentsLoader<UnitBuilder> loader = new ComponentsLoader<>();
+			materialiserTranslatorPlugins = loader.loadClass(source, clazz, UnitBuilder.class);
 		} catch (Exception e) {
 			throw new ExtensionNotFoundException(e.toString());
 		}

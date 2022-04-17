@@ -1,4 +1,4 @@
-package helio.blueprints;
+package helio.blueprints.components;
 
 import java.io.File;
 import java.lang.reflect.Constructor;

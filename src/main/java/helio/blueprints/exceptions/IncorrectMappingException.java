@@ -1,9 +1,9 @@
 package helio.blueprints.exceptions;
 
-import helio.blueprints.components.MappingProcessor;
+import helio.blueprints.UnitBuilder;
 
 /**
- * This exception is thrown when a {@link MappingProcessor} detects a syntactical error.
+ * This exception is thrown when a {@link UnitBuilder} detects a syntactical error.
  * @author Andrea Cimmino Arriaga
  */
 public class IncorrectMappingException extends Exception {

@@ -1,4 +1,4 @@
-package helio.blueprints;
+package helio.blueprints.components;
 
 import java.util.Objects;
 
