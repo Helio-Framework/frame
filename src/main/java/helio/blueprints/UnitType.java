@@ -8,7 +8,7 @@ package helio.blueprints;
 public enum UnitType {
 
 	Sync,
-	Async;
+	Scheduled, Async;
 	
 	
 	public static boolean isAsync(TranslationUnit unit) {
@@ -17,6 +17,10 @@ public enum UnitType {
 	
 	public static boolean isSync(TranslationUnit unit) {
 		return Sync.equals(unit.getUnitType());
+	}
+	
+	public static boolean isScheduled(TranslationUnit unit) {
+		return Scheduled.equals(unit.getUnitType());
 	}
 	
 	
