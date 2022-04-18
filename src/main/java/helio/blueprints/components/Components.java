@@ -36,6 +36,40 @@ public class Components {
 		super();
 	}
 
+	public static DataProvider newProviderInstance(String clazz) throws ExtensionNotFoundException {
+		Optional<Component> cmpOpt =  registered.parallelStream().filter(cmp -> cmp.getClazz().endsWith("."+clazz)).findFirst();
+		if(cmpOpt.isPresent()) {
+			Component component = cmpOpt.get();
+			return buildDataProvider(component.getSource(), component.getClazz());
+		}else {
+			throw new ExtensionNotFoundException("Provided clazz is not a loaded component");
+		}
+	}
+	
+	public static DataHandler newHandlerInstance(String clazz) throws ExtensionNotFoundException {
+		Optional<Component> cmpOpt =  registered.parallelStream().filter(cmp -> cmp.getClazz().endsWith("."+clazz)).findFirst();
+		if(cmpOpt.isPresent()) {
+			Component component = cmpOpt.get();
+			return buildDataHandler(component.getSource(), component.getClazz());
+		}else {
+			throw new ExtensionNotFoundException("Provided clazz is not a loaded component");
+		}
+	}
+	
+	public static UnitBuilder newBuilderInstance(String clazz) throws ExtensionNotFoundException {
+		Optional<Component> cmpOpt =  registered.parallelStream().filter(cmp -> cmp.getClazz().endsWith("."+clazz)).findFirst();
+		if(cmpOpt.isPresent()) {
+			Component component = cmpOpt.get();
+			return buildMappingLanguage(component.getSource(), component.getClazz());
+		}else {
+			throw new ExtensionNotFoundException("Provided clazz is not a loaded component");
+		}
+	}
+	
+	
+	
+	
+	
 	// registration methods
 	public static void registerAndLoad(String source, String clazz, ComponentType type) throws ExtensionNotFoundException {
 		Component cmp = new Component(source, clazz, type);
