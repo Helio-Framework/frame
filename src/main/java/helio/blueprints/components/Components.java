@@ -1,9 +1,7 @@
 package helio.blueprints.components;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import helio.blueprints.DataHandler;
@@ -71,16 +69,22 @@ public class Components {
 	
 	
 	// registration methods
-//	public static void registerAndLoad(String source, String clazz, ComponentType type) throws ExtensionNotFoundException {
-//		Component cmp = new Component(source, clazz, type);
-//		registered.add(cmp);
-//		//load(cmp);
-//	}
-//	
-//	public static void registerAndLoad(Component cmp) throws ExtensionNotFoundException {
-//		registered.add(cmp);
-//		//load(cmp);
-//	}
+	public static void registerAndLoad(String source, String clazz, ComponentType type) throws ExtensionNotFoundException {
+		Component cmp = new Component(source, clazz, type);
+		registered.add(cmp);
+		//load(cmp);
+	}
+	
+	public static void registerAndLoad(Component cmp) throws ExtensionNotFoundException {
+		registered.add(cmp);
+		if(cmp.getType().equals(ComponentType.PROVIDER)) {
+			buildDataProvider(cmp.source, cmp.getClazz());
+		}else if(cmp.getType().equals(ComponentType.HANDLER)) {
+			buildDataHandler(cmp.source, cmp.getClazz());
+		}else if(cmp.getType().equals(ComponentType.BUILDER)) {
+			buildMappingLanguage(cmp.source, cmp.getClazz());
+		}
+	}
 	
 	public static void register(String source, String clazz, ComponentType type) {
 		registered.add(new Component(source, clazz, type));
