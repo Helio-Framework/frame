@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import helio.blueprints.Action;
 import helio.blueprints.DataHandler;
 import helio.blueprints.DataProvider;
 import helio.blueprints.MappingFunctions;
@@ -27,6 +28,7 @@ public class Components {
 	public static final String EXTENSION_TYPE_HANDLER = "DataHandler";
 	public static final String EXTENSION_TYPE_READER = "UnitBuilder";
 	public static final String EXTENSION_TYPE_FUNCTION = "MappingFunctions";
+	public static final String EXTENSION_TYPE_ACTION = "Action";
 	
 	private static List<Component> registered = new LinkedList<>();
 
@@ -64,6 +66,16 @@ public class Components {
 		}
 	}
 	
+	public static Action newActionInstance(String clazz) throws ExtensionNotFoundException {
+		Optional<Component> cmpOpt =  registered.parallelStream().filter(cmp -> cmp.getClazz().endsWith("."+clazz)).findFirst();
+		if(cmpOpt.isPresent()) {
+			Component component = cmpOpt.get();
+			return buildAction(component.getSource(), component.getClazz());
+		}else {
+			throw new ExtensionNotFoundException("Provided clazz is not a loaded component");
+		}
+	}
+	
 	
 	
 	
@@ -83,6 +95,8 @@ public class Components {
 			buildDataHandler(cmp.source, cmp.getClazz());
 		}else if(cmp.getType().equals(ComponentType.BUILDER)) {
 			buildMappingLanguage(cmp.source, cmp.getClazz());
+		}else if(cmp.getType().equals(ComponentType.ACTION)) {
+			buildAction(cmp.source, cmp.getClazz());
 		}
 	}
 	
@@ -99,78 +113,7 @@ public class Components {
 	}
 	
 	// Load Methods
-	
-	/**
-	 * This method allows to register a component 
-	 * @param className The class name to be loaded as an object
-	 * @throws ExtensionNotFoundException is thrown if the name does not correspond to any registered component
-	 */
-//	public static void load(String className) throws ExtensionNotFoundException {
-//		Optional<Component> cmpOpt = registered.parallelStream().filter(cmp -> cmp.getClazz().endsWith("."+className)).findFirst();
-//		if(!cmpOpt.isPresent())
-//			throw new ExtensionNotFoundException("check if the class privied "+className+" was registered as a component");
-//		Component cmp = cmpOpt.get();
-//		load(cmp, className);
-//
-//	}
-//	public static void load(Component component) throws ExtensionNotFoundException {
-//		String clazz = component.getClazz();
-//		String name = component.getClazz().substring(clazz.lastIndexOf('.')+1);
-//		load(component, name);
-//	}
-//	
-//	protected static void load(Component component, String className) throws ExtensionNotFoundException {
-//		if (component.getType().equals(ComponentType.PROVIDER)) {
-//			DataProvider provider = buildDataProvider(component.getSource(), component.getClazz());
-//			dataProviders.put(className, provider); 
-//		}else if (component.getType().equals(ComponentType.HANDLER)) {
-//			DataHandler handler = buildDataHandler(component.getSource(), component.getClazz());
-//			dataHandlers.put(className, handler); 
-//
-//		}else if (component.getType().equals(ComponentType.FUNCTION)) {
-//			MappingFunctions function = buildMappingFunctions(component.getSource(), component.getClazz());
-//			mappingFunctions.put(className, function); 
-//
-//		}else if (component.getType().equals(ComponentType.BUILDER)) {
-//			UnitBuilder reader = buildMappingLanguage(component.getSource(), component.getClazz());
-//			mappingProcessors.put(className, reader); 
-//		}
-//	}
 
-
-//	/**
-//	 * Returns the {@link DataProvider} components
-//	 * @return a map with the name of the class as key and the {@link DataProvider} as value
-//	 */
-//	public static Map<String, DataProvider> getDataProviders() {
-//		return dataProviders;
-//	}
-//
-//	/**
-//	 * Returns the {@link DataHandler} components
-//	 * @return a map with the name of the class as key and the {@link DataHandler} as value
-//	 */
-//	public static Map<String, DataHandler> getDataHandlers() {
-//		return dataHandlers;
-//	}
-//
-//	/**
-//	 * Returns the {@link UnitBuilder} components
-//	 * @return a map with the name of the class as key and the {@link UnitBuilder} as value
-//	 */
-//	public static Map<String, UnitBuilder> getMappingProcessors() {
-//		return mappingProcessors;
-//	}
-//
-//	/**
-//	 * Returns the {@link MappingFunctions} components
-//	 * @return a map with the name of the class as key and the {@link MappingFunctions} as value
-//	 */
-//	public static Map<String, MappingFunctions> getMappingFunctions() {
-//		return mappingFunctions;
-//	}
-	
-	
 
 
 	// Building methods
@@ -221,6 +164,17 @@ public class Components {
 			throw new ExtensionNotFoundException(e.toString());
 		}
 		return materialiserTranslatorPlugins;
+	}
+	
+	private static Action buildAction(String source, String clazz) throws ExtensionNotFoundException {
+		Action action = null;
+		try {
+			ComponentsLoader<Action> loader = new ComponentsLoader<>();
+			action = loader.loadClass(source, clazz, Action.class);
+		} catch (Exception e) {
+			throw new ExtensionNotFoundException(e.toString());
+		}
+		return action;
 	}
 
 }
