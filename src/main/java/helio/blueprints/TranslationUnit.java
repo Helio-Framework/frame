@@ -1,6 +1,6 @@
 package helio.blueprints;
 
-import java.util.List;
+import java.util.concurrent.Callable;
 
 import helio.blueprints.exceptions.TranslationUnitExecutionException;
 
@@ -21,16 +21,11 @@ public interface TranslationUnit extends ConfigurableBlueprint {
 	
 	public void setUnitType(UnitType type);
 
-
 	public String getId();
 
-
-	public Runnable getTask() throws TranslationUnitExecutionException;
-	
-	public List<String> getDataTranslated() throws TranslationUnitExecutionException;
-	
-	public void flushDataTranslated() throws TranslationUnitExecutionException;
-
+	public Callable<String> getTask() throws TranslationUnitExecutionException;
+		
 	public int getScheduledTime();
+	
 	public void setScheduledTime(int scheduledTime);
 }
