@@ -7,7 +7,6 @@ import java.util.Optional;
 import helio.blueprints.Action;
 import helio.blueprints.DataHandler;
 import helio.blueprints.DataProvider;
-import helio.blueprints.MappingFunctions;
 import helio.blueprints.UnitBuilder;
 import helio.blueprints.exceptions.ExtensionNotFoundException;
 
@@ -143,16 +142,16 @@ public class Components {
 
 
 
-	private static MappingFunctions buildMappingFunctions(String source, String clazz) throws ExtensionNotFoundException {
-		MappingFunctions MappingFunctionsPlugins = null;
-		try {
-			ComponentsLoader<MappingFunctions> loader = new ComponentsLoader<>();
-			MappingFunctionsPlugins = loader.loadClass(source, clazz, MappingFunctions.class);
-		} catch (Exception e) {
-			throw new ExtensionNotFoundException(e.toString());
-		}
-		return MappingFunctionsPlugins;
-	}
+//	private static MappingFunctions buildMappingFunctions(String source, String clazz) throws ExtensionNotFoundException {
+//		MappingFunctions MappingFunctionsPlugins = null;
+//		try {
+//			ComponentsLoader<MappingFunctions> loader = new ComponentsLoader<>();
+//			MappingFunctionsPlugins = loader.loadClass(source, clazz, MappingFunctions.class);
+//		} catch (Exception e) {
+//			throw new ExtensionNotFoundException(e.toString());
+//		}
+//		return MappingFunctionsPlugins;
+//	}
 
 
 	private static UnitBuilder buildMappingLanguage(String source, String clazz) throws ExtensionNotFoundException {

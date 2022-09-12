@@ -11,13 +11,13 @@ Blueprints for developing new Helio components (**use java 11 or above**):
 	<dependency>
 		<groupId>io.github.helio-ecosystem</groupId>
 		<artifactId>helio-blueprints</artifactId>
-		<version>0.4.21</version>
+		<version>0.4.24</version>
 	</dependency>
 ````
 
 ### 2. Add some logging
 It is also strongly recommended to add log traces in the component, for this purpose we suggest to add the following dependencies although any log tracker can be used
-````xml
+```xml
 	<!-- Loggin -->
 	<dependency>
 		<groupId>org.slf4j</groupId>
@@ -30,10 +30,10 @@ It is also strongly recommended to add log traces in the component, for this pur
 		<artifactId>slf4j-simple</artifactId>
 		<version>${slf4jVersion}</version>
 	</dependency>
-````
+```
 
 
-### 3. add plugins for buillding jars that contain all the third-party dependencies
+### 3. add plugins for building jars that contain all the third-party dependencies
 The output jar of the component must include all the third-party dependencies. For this purpose we recommend to add the following excerpt in the pom, more information about how to build a *fat jar* can be found in this [article](https://www.baeldung.com/executable-jar-with-maven).
 
 ````xml
@@ -78,7 +78,7 @@ The output jar of the component must include all the third-party dependencies. F
 		<dependency>
 			<groupId>io.github.helio-ecosystem</groupId>
 			<artifactId>helio-blueprints</artifactId>
-			<version>0.4.21</version>
+			<version>0.4.24</version>
 		</dependency>
 		<!-- Loggin -->
 		<dependency>
