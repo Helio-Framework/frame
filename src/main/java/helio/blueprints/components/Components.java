@@ -41,7 +41,7 @@ public class Components {
 			Component component = cmpOpt.get();
 			return buildDataProvider(component.getSource(), component.getClazz());
 		}else {
-			throw new ExtensionNotFoundException("Provided clazz is not a loaded component");
+			throw new ExtensionNotFoundException("Provided clazz '"+clazz+"' is not a loaded component");
 		}
 	}
 	
@@ -51,7 +51,7 @@ public class Components {
 			Component component = cmpOpt.get();
 			return buildDataHandler(component.getSource(), component.getClazz());
 		}else {
-			throw new ExtensionNotFoundException("Provided clazz is not a loaded component");
+			throw new ExtensionNotFoundException("Provided clazz '"+clazz+"' is not a loaded component");
 		}
 	}
 	
@@ -61,7 +61,7 @@ public class Components {
 			Component component = cmpOpt.get();
 			return buildMappingLanguage(component.getSource(), component.getClazz());
 		}else {
-			throw new ExtensionNotFoundException("Provided clazz is not a loaded component");
+			throw new ExtensionNotFoundException("Provided clazz '"+clazz+"' is not a loaded component");
 		}
 	}
 	
@@ -71,7 +71,7 @@ public class Components {
 			Component component = cmpOpt.get();
 			return buildAction(component.getSource(), component.getClazz());
 		}else {
-			throw new ExtensionNotFoundException("Provided clazz is not a loaded component");
+			throw new ExtensionNotFoundException("Provided clazz '"+clazz+"' is not a loaded component");
 		}
 	}
 	
